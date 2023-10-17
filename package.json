@@ -1,0 +1,19 @@
+{
+  "name": "polly_backend",
+  "version": "1.0.0",
+  "description": "Backend component for polly app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jubedoyat/polly_backend.git"
+  },
+  "author": "jubedoyat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jubedoyat/polly_backend/issues"
+  },
+  "homepage": "https://github.com/jubedoyat/polly_backend#readme"
+}
