@@ -1,4 +1,5 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Country } = require('../country/country_model');
 
 const {sequelize} = require('../../main/controller/database');  
 
@@ -55,6 +56,12 @@ const Pollster = sequelize.define('question',{
     tableName: 'pollster',
     modelName: 'pollster'
 });
+
+Country.hasMany(Pollster, {
+    foreignKey: 'country_id'
+});
+
+Pollster.belongsTo(Country);
 
 module.exports = {
     Pollster,

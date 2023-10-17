@@ -1,4 +1,6 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Answer } = require('../answer/answer_model');
+const { Poll } = require('../poll/poll_model');
 
 const {sequelize} = require('../../main/controller/database');  
 
@@ -34,6 +36,18 @@ const PollAnswered = sequelize.define('poll_answered',{
     tableName: 'poll_type',
     modelName: 'poll_type'
 });
+
+Answer.hasMany(PollAnswered, {
+    foreignKey:'answer_id'
+});
+
+PollAnswered.belongsTo(Answer);
+
+Poll.hasMany(PollAnswered, {
+    foreignKey:'poll_id'
+});
+
+PollAnswered.belongsTo(Poll);
 
 module.exports = {
     PollAnswered,

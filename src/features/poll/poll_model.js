@@ -1,4 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
+const { Pollster } = require('../pollster/pollster_model');
+const { Supervisor } = require('../supervisor/supervisor_model');
+const { Department } = require('../department/department_model');
+const { Municipality } = require('../municipality/municipality_model');
+const { PollType } = require('../poll_type/poll_type_model');
 
 const {sequelize} = require('../../main/controller/database');  
 
@@ -97,6 +102,36 @@ const Poll = sequelize.define('poll',{
     tableName: 'poll',
     modelName: 'poll'
 });
+
+Pollster.hasMany(Poll, {
+    foreignKey: 'pollster_id'
+});
+
+Poll.belongsTo(Pollster);
+
+Supervisor.hasMany(Poll, {
+    foreignKey: 'supervisor_id'
+});
+
+Poll.belongsTo(Supervisor);
+
+Department.hasMany(Poll, {
+    foreignKey: 'department_id'
+});
+
+Poll.belongsTo(Department);
+
+Municipality.hasMany(Poll, {
+    foreignKey: 'municipality_id'
+});
+
+Poll.belongsTo(Municipality);
+
+PollType.hasMany(Poll, {
+    foreignKey: 'poll_type_id'
+});
+
+Poll.belongsTo(PollType);
 
 module.exports = {
     Poll,

@@ -1,4 +1,5 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
+const { VehicleType } = require('../vehicle_type/vehicle_type_model');
 
 const {sequelize} = require('../../main/controller/database');  
 
@@ -41,6 +42,12 @@ const Question = sequelize.define('question',{
     tableName: 'question',
     modelName: 'question'
 });
+
+VehicleType.hasMany(Question, {
+    foreignKey: 'veh_type_id'
+});
+
+Question.belongsTo(VehicleType);
 
 module.exports = {
     Question,

@@ -1,4 +1,6 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Research } = require('../research/research_model');
+const { VehicleType } = require('../vehicle_type/vehicle_type_model');
 
 const {sequelize} = require('../../main/controller/database');  
 
@@ -48,6 +50,18 @@ const PollTable = sequelize.define('poll_table',{
     tableName: 'poll_table',
     modelName: 'poll_table'
 });
+
+VehicleType.hasMany(PollTable, {
+    foreignKey: 'veh_type_id'
+});
+
+PollTable.belongsTo(VehicleType);
+
+Research.hasMany(PollTable, {
+    foreignKey: 'research_id'
+});
+
+PollTable.belongsTo(Research);
 
 module.exports = {
     PollTable,
